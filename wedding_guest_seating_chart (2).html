@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Seating Chart - Zuo An & Mei Khei</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for Elegant Calligraphy & Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&family=Noto+Serif+SC:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        script: ['Alex Brush', 'cursive'],
+                        serifHeader: ['Cinzel', 'serif'],
+                        garamond: ['Cormorant Garamond', 'serif'],
+                        body: ['Montserrat', 'Noto Serif SC', 'sans-serif'],
+                        chinese: ['Noto Serif SC', 'serif']
+                    },
+                    colors: {
+                        cream: {
+                            50: '#FAF8F5',
+                            100: '#F5F0EB',
+                            200: '#EAE1D7'
+                        },
+                        charcoal: '#2C2B2A',
+                        gold: '#D4AF37'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom typography & print optimizations */
+        body {
+            background-color: #f3ede6;
+            color: #1a1a1a;
+            font-family: 'Montserrat', 'Noto Serif SC', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .paper-card {
+            background-color: #FAF8F5;
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.03);
+            background-image: radial-gradient(#dcd2c7 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
+        }
+
+        /* Tulip decorative element stroke rendering */
+        .tulip-art {
+            stroke: #C5A059;
+            stroke-width: 1.25;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+            opacity: 0.35;
+        }
+
+        .tulip-art-soft {
+            stroke: #A89279;
+            stroke-width: 1;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: rgba(212, 175, 55, 0.03);
+            opacity: 0.28;
+        }
+
+        /* Script font sizing & elegance */
+        .title-names {
+            font-family: 'Alex Brush', cursive;
+            line-height: 1.1;
+        }
+
+        .table-number {
+            font-family: 'Alex Brush', cursive;
+            font-style: italic;
+        }
+
+        /* High-contrast highlight animation for search */
+        .highlight-guest {
+            background-color: #FEF08A !important;
+            color: #000000 !important;
+            font-weight: 800 !important;
+            padding: 2px 6px;
+            border-radius: 4px;
+            transform: scale(1.08);
+            display: inline-block;
+            transition: all 0.2s ease;
+            box-shadow: 0 0 0 2px #D97706;
+        }
+
+        .highlight-table {
+            border-color: #D4AF37 !important;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4) !important;
+            background-color: #FFFFFF !important;
+        }
+
+        /* SVG Map Table Highlight */
+        .map-table {
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+        .map-table:hover rect {
+            fill: #FEF3C7;
+            stroke: #B45309;
+            stroke-width: 2.5px;
+        }
+        .map-table.highlight-map-table rect {
+            fill: #FDE68A !important;
+            stroke: #D97706 !important;
+            stroke-width: 3px !important;
+            filter: drop-shadow(0px 0px 6px rgba(217, 119, 6, 0.6));
+        }
+
+        /* Page Break Rules for Clean 2-Page Printing */
+        @media print {
+            @page {
+                size: portrait;
+                margin: 0.5cm;
+            }
+            body {
+                background: none !important;
+                background-color: #ffffff !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                color: #000000 !important;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .page-break {
+                break-before: page !important;
+                page-break-before: always !important;
+                margin-top: 1rem !important;
+            }
+            .paper-card {
+                box-shadow: none !important;
+                border: none !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                padding: 0.5rem !important;
+                margin: 0 !important;
+                background: #ffffff !important;
+            }
+            .tulip-art, .tulip-art-soft {
+                opacity: 0.22 !important;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen py-6 px-3 sm:px-6 md:px-8">
+
+    <!-- Controls Toolbar (Hidden in Print) -->
+    <div class="no-print max-w-5xl mx-auto mb-6 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-md border border-stone-300" role="region" aria-label="Seating Chart Controls">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+            
+            <!-- Search Guest Input -->
+            <div class="relative w-full md:w-80" role="search">
+                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-stone-500 text-base" aria-hidden="true"></i>
+                <input 
+                    type="text" 
+                    id="guestSearch" 
+                    aria-label="Search guest by name"
+                    placeholder="Search guest name..." 
+                    class="w-full pl-10 pr-9 py-2.5 bg-stone-50 border border-stone-400 rounded-xl text-base text-stone-900 font-medium placeholder-stone-500 focus:outline-none focus:ring-2 focus:ring-amber-600 focus:border-amber-600 transition-all"
+                    oninput="searchGuest()"
+                >
+                <button id="clearSearch" onclick="clearSearch()" aria-label="Clear search field" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-stone-500 hover:text-stone-800 p-1">
+                    <i class="fa-solid fa-circle-xmark text-base"></i>
+                </button>
+            </div>
+
+            <!-- Controls (Scale & Columns & Print) -->
+            <div class="flex flex-wrap items-center justify-end gap-3 w-full md:w-auto">
+                
+                <!-- Font Scale Control -->
+                <div class="flex items-center space-x-2 bg-stone-100 px-3 py-2 rounded-xl border border-stone-300 text-sm text-stone-800">
+                    <span class="font-semibold"><i class="fa-solid fa-text-height mr-1" aria-hidden="true"></i> Text Size:</span>
+                    <button onclick="adjustScale(-0.05)" aria-label="Decrease text size" class="px-2.5 py-1 bg-white border border-stone-300 rounded hover:bg-stone-200 font-bold text-base leading-none shadow-sm text-stone-900">-</button>
+                    <span id="scaleDisplay" class="w-12 text-center font-mono font-bold text-stone-900 text-base">100%</span>
+                    <button onclick="adjustScale(0.05)" aria-label="Increase text size" class="px-2.5 py-1 bg-white border border-stone-300 rounded hover:bg-stone-200 font-bold text-base leading-none shadow-sm text-stone-900">+</button>
+                </div>
+
+                <!-- Page Jump Shortcuts -->
+                <div class="flex items-center space-x-1 bg-stone-100 p-1.5 rounded-xl border border-stone-300 text-sm">
+                    <a href="#seatingSection" class="px-3 py-1 rounded-lg font-semibold hover:bg-white text-stone-800 transition-all">Guests</a>
+                    <a href="#mapSection" class="px-3 py-1 rounded-lg font-semibold hover:bg-white text-stone-800 transition-all">Map</a>
+                </div>
+
+                <!-- Print Button -->
+                <button onclick="window.print()" class="flex items-center gap-2 px-4 py-2.5 bg-stone-900 hover:bg-black text-white font-semibold text-sm rounded-xl shadow-md transition-all active:scale-95">
+                    <i class="fa-solid fa-print text-base" aria-hidden="true"></i>
+                    <span>Print 2-Page PDF</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Search Status Bar -->
+        <div id="searchStatus" class="hidden mt-2 text-sm text-stone-800 font-semibold px-1" role="status" aria-live="polite"></div>
+    </div>
+
+    <!-- Printable Canvas -->
+    <main class="max-w-5xl mx-auto space-y-8">
+        
+        <!-- PAGE 1: SEATING CHART GUEST LIST -->
+        <div id="seatingCard" class="paper-card relative overflow-hidden rounded-2xl p-6 sm:p-10 md:p-12 border border-stone-300">
+            
+            <!-- Decorative Tulip & Leaf Background Watermarks -->
+            <div class="absolute inset-0 pointer-events-none select-none overflow-hidden z-0" aria-hidden="true">
+                
+                <!-- Top-Left Tulip Branch & Leaves -->
+                <svg class="absolute -top-4 -left-4 w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 transform -rotate-12" viewBox="0 0 200 200">
+                    <path class="tulip-art-soft" d="M10 160 C 20 100, 70 70, 110 50 C 80 80, 50 120, 10 160 Z" />
+                    <path class="tulip-art" d="M30 180 C 60 130, 100 110, 140 90 C 100 120, 70 150, 30 180 Z" />
+                    <path class="tulip-art" d="M20 190 Q 70 120 120 45" />
+                    <g transform="translate(120,45) rotate(25)">
+                        <path class="tulip-art" d="M 0 0 C -15 -20, -18 -45, 0 -60 C 18 -45, 15 -20, 0 0 Z" />
+                        <path class="tulip-art" d="M -10 -20 C -25 -35, -15 -55, 0 -60 C -8 -45, -5 -30, -10 -20 Z" />
+                        <path class="tulip-art" d="M 10 -20 C 25 -35, 15 -55, 0 -60 C 8 -45, 5 -30, 10 -20 Z" />
+                    </g>
+                </svg>
+
+                <!-- Top-Right Tulip Branch & Leaves -->
+                <svg class="absolute -top-4 -right-4 w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 transform scale-x-[-1] -rotate-12" viewBox="0 0 200 200">
+                    <path class="tulip-art-soft" d="M10 160 C 20 100, 70 70, 110 50 C 80 80, 50 120, 10 160 Z" />
+                    <path class="tulip-art" d="M30 180 C 60 130, 100 110, 140 90 C 100 120, 70 150, 30 180 Z" />
+                    <path class="tulip-art" d="M20 190 Q 70 120 120 45" />
+                    <g transform="translate(120,45) rotate(25)">
+                        <path class="tulip-art" d="M 0 0 C -15 -20, -18 -45, 0 -60 C 18 -45, 15 -20, 0 0 Z" />
+                    </g>
+                </svg>
+
+            </div>
+
+            <div id="scalableWrapper" class="printable-content relative z-10 origin-top transition-all duration-200">
+                
+                <!-- Header Title Block -->
+                <header class="text-center mb-8 sm:mb-10" id="seatingSection">
+                    
+                    <h1 class="title-names text-6xl sm:text-7xl md:text-8xl text-stone-900 font-normal tracking-wide leading-none">
+                        Zuo An
+                    </h1>
+                    
+                    <div class="title-names text-3xl sm:text-4xl text-stone-700 font-normal my-0 sm:-my-1 italic">
+                        and
+                    </div>
+                    
+                    <h1 class="title-names text-6xl sm:text-7xl md:text-8xl text-stone-900 font-normal tracking-wide leading-none mb-6">
+                        Mei Khei
+                    </h1>
+
+                    <div class="font-serifHeader text-stone-900 text-2xl sm:text-3xl md:text-4xl tracking-[0.25em] sm:tracking-[0.3em] font-semibold border-t-2 border-b-2 border-stone-800 py-2 inline-block px-10 uppercase">
+                        Seating Plan
+                    </div>
+
+                    <!-- View Switcher Controls (By Table vs. Alphabetical A-Z) -->
+                    <div class="no-print mt-5 flex justify-center items-center gap-2">
+                        <button id="btnViewTable" onclick="switchView('table')" class="px-4 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all bg-stone-900 text-white shadow-sm">
+                            By Table
+                        </button>
+                        <button id="btnViewAlpha" onclick="switchView('alpha')" class="px-4 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all bg-stone-200 text-stone-800 hover:bg-stone-300">
+                            Alphabetical (A-Z)
+                        </button>
+                    </div>
+                </header>
+
+                <!-- Tables Grid Container -->
+                <div id="tablesGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-6 gap-y-8 sm:gap-y-10">
+                    <!-- Dynamic Javascript Grid HTML -->
+                </div>
+
+                <!-- Alphabetical Index Container (Hidden by default) -->
+                <div id="alphaGrid" class="hidden grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                    <!-- Dynamic Alphabetical Javascript HTML -->
+                </div>
+
+                <!-- Footer -->
+                <footer class="mt-12 text-center text-stone-600 text-xs sm:text-sm tracking-widest font-serifHeader uppercase border-t border-stone-300 pt-6 font-medium">
+                    Thank you for celebrating with us
+                </footer>
+
+            </div>
+        </div>
+
+        <!-- PAGE 2: VENUE FLOOR PLAN MAP -->
+        <div id="seatingCardMap" class="paper-card page-break relative overflow-hidden rounded-2xl p-6 sm:p-10 border border-stone-300">
+            <!-- Header for Map Page -->
+            <header class="text-center mb-6" id="mapSection">
+                <h1 class="title-names text-5xl sm:text-6xl text-stone-900 font-normal">Zuo An & Mei Khei</h1>
+                <div class="font-serifHeader text-stone-800 text-xl sm:text-2xl tracking-[0.2em] font-semibold border-t-2 border-b-2 border-stone-800 py-1.5 inline-block px-8 uppercase mt-2">
+                    Venue Floor Plan
+                </div>
+            </header>
+
+            <!-- Dynamic Guest Location Highlight Banner -->
+            <div id="guestLocationBanner" class="hidden my-3 p-3 sm:p-4 bg-amber-100/90 border border-amber-400 rounded-xl text-center text-amber-950 font-bold shadow-md transition-all flex items-center justify-between px-4 sm:px-6 animate-pulse">
+                <div class="flex items-center space-x-2 text-sm sm:text-base md:text-lg">
+                    <i class="fa-solid fa-location-dot text-amber-600 text-xl animate-bounce" aria-hidden="true"></i>
+                    <span id="guestLocationText"></span>
+                </div>
+                <button onclick="dismissGuestLocation()" aria-label="Dismiss banner" class="text-amber-800 hover:text-black font-bold text-xl px-2">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Floor Plan SVG Diagram -->
+            <div class="w-full overflow-x-auto my-4 border border-stone-300 rounded-xl bg-amber-50/20 p-2 sm:p-4 shadow-inner">
+                <svg viewBox="0 0 920 580" class="w-full h-auto min-w-[700px] font-sans">
+                    <!-- Background Outline -->
+                    <rect x="5" y="5" width="910" height="570" fill="#FAF8F5" stroke="#78716C" stroke-width="2" rx="8" />
+
+                    <!-- STAGE -->
+                    <g transform="translate(720, 20)">
+                        <rect width="180" height="230" fill="#CBD5E1" stroke="#475569" stroke-width="2" rx="4" />
+                        <text x="90" y="120" text-anchor="middle" font-family="Cinzel, serif" font-weight="700" font-size="20" fill="#1E293B" letter-spacing="3">STAGE</text>
+                    </g>
+
+                    <!-- WALKWAY PATH -->
+                    <g transform="translate(220, 250)">
+                        <line x1="0" y1="0" x2="460" y2="0" stroke="#DB2777" stroke-width="2.5" stroke-dasharray="6,4" />
+                        <polygon points="460,-5 475,0 460,5" fill="#DB2777" />
+                        <text x="230" y="-8" text-anchor="middle" font-size="13" font-weight="600" fill="#BE185D" font-family="Montserrat, sans-serif">Walkway Path</text>
+                    </g>
+
+                    <!-- TOP ROW TABLES (7 to 1) -->
+                    <!-- Table 7 -->
+                    <g class="map-table" data-map-table="7" onclick="scrollToTable(7)" transform="translate(60, 40)">
+                        <rect width="75" height="110" fill="#FFFFFF" stroke="#78716C" stroke-width="1.5" rx="6" />
+                        <text x="37.5" y="60" text-anchor="middle" font-size="14" font-weight="700" fill="#1C1917">Table 7</text>
+                    </g>
+                    <!-- Table 6 -->
+                    <g class="map-table" data-map-table="6" onclick="scrollToTable(6)" transform="translate(155, 40)">
+                        <rect width="75" height="110" fill="#FFFFFF" stroke="#78716C" stroke-width="1.5" rx="6" />
+                        <text x="37.5" y="60" text-anchor="middle" font-size="14" font-weight="700" fill="#1C1917">Table 6</text>
+                    </g>
+                    <!-- Table 5 -->
+                    <g class="map-table" data-map-table="5" onclick="scrollToTable(5)" transform="translate(250, 40)">
+                        <rect width="75" height="110" fill="#FFFFFF" stroke="#78716C" stroke-width="1.5" rx="6" />
+                        <text x="37.5" y="60" text-anchor="middle" font-size="14" font-weight="700" fill="#1C1917">Table 5</text>
+                    </g>
+                    <!-- Unused Table 4 Placeholder -->
+                    <g transform="translate(345, 60)" opacity="0.6">
+                        <rect width="75" height="70" fill="#E7E5E4" stroke="#A8A29E" stroke-width="1" stroke-dasharray="3,3" rx="4" />
+                        <text x="37.5" y="40" text-anchor="middle" font-size="12" fill="#78716C">Table 4</text>
+                    </g>
+                    <!-- Table 3 -->
+                    <g class="map-table" data-map-table="3" onclick="scrollToTable(3)" transform="translate(440, 40)">
+                        <rect width="75" height="110" fill="#FFFFFF" stroke="#78716C" stroke-width="1.5" rx="6" />
+                        <text x="37.5" y="60" text-anchor="middle" font-size="14" font-weight="700" fill="#1C1917">Table 3</text>
+                    </g>
+                    <!-- Table 2 -->
+                    <g class="map-table" data-map-table="2" onclick="scrollToTable(2)" transform="translate(535, 40)">
+                        <rect width="75" height="110" fill="#FFFFFF" stroke="#78716C" stroke-width="1.5" rx="6" />
+                        <text x="37.5" y="60" text-anchor="middle" font-size="14" font-weight="700" fill="#1C1917">Table 2</text>
+                    </g>
+                    <!-- Table 1 -->
+                    <g class="map-table" data-map-table="1" onclick="scrollToTable(1)" transform="translate(630, 40)">
+                        <rect width="75" height="110" fill="#FFFFFF" stroke="#78716C" stroke-width="1.5" rx="6" />
+                        <text x="37.5" y="60" text-anchor="middle" font-size="14" font-weight="700" fill="#1C1917">Table 1</text>
+                    </g>
+
+                    <!-- MIDDLE ROW TABLES (8 to 14) -->
+                    <!-- Table 8 -->
+                    <g class="map-table" data-map-table="8" onclick="scrollToTable(8)" transform="translate(60, 275)">
+                        <rect width="75" height="110" fill="#FFFFFF" stroke="#78716C" stroke-width="1.5" rx="6" />
+                        <text x="37.5" y="60" text-anchor="middle" font-size="14" font-weight="700" fill="#1C1917">Table 8</text>
+                    </g>
+                    <!-- Table 9 -->
+                    <g class="map-table" data-map-table="9" onclick="scrollToTable(9)" transform="translate(155, 275)">
+                        <rect width="75" height="110" fill="#FFFFFF" stroke="#78716C" stroke-width="1.5" rx="6" />
+                        <text x="37.5" y="60" text-anchor="middle" font-size="14" font-weight="700" fill="#1C1917">Table 9</text>
+                    </g>
+                    <!-- Table 10 -->
+                    <g class="map-table" data-map-table="10" onclick="scrollToTable(10)" transform="translate(250, 275)">
+                        <rect width="75" height="110" fill="#FFFFFF" stroke="#78716C" stroke-width="1.5" rx="6" />
+                        <text x="37.5" y="60" text-anchor="middle" font-size="14" font-weight="700" fill="#1C1917">Table 10</text>
+                    </g>
+                    <!-- Table 11 -->
+                    <g class="map-table" data-map-table="11" onclick="scrollToTable(11)" transform="translate(345, 275)">
+                        <rect width="75" height="110" fill="#FFFFFF" stroke="#78716C" stroke-width="1.5" rx="6" />
+                        <text x="37.5" y="60" text-anchor="middle" font-size="14" font-weight="700" fill="#1C1917">Table 11</text>
+                    </g>
+                    <!-- Table 12 -->
+                    <g class="map-table" data-map-table="12" onclick="scrollToTable(12)" transform="translate(440, 275)">
+                        <rect width="75" height="110" fill="#FFFFFF" stroke="#78716C" stroke-width="1.5" rx="6" />
+                        <text x="37.5" y="60" text-anchor="middle" font-size="14" font-weight="700" fill="#1C1917">Table 12</text>
+                    </g>
+                    <!-- Table 13 -->
+                    <g class="map-table" data-map-table="13" onclick="scrollToTable(13)" transform="translate(535, 275)">
+                        <rect width="75" height="110" fill="#FFFFFF" stroke="#78716C" stroke-width="1.5" rx="6" />
+                        <text x="37.5" y="60" text-anchor="middle" font-size="14" font-weight="700" fill="#1C1917">Table 13</text>
+                    </g>
+                    <!-- Table 14 -->
+                    <g class="map-table" data-map-table="14" onclick="scrollToTable(14)" transform="translate(630, 275)">
+                        <rect width="75" height="110" fill="#FFFFFF" stroke="#78716C" stroke-width="1.5" rx="6" />
+                        <text x="37.5" y="60" text-anchor="middle" font-size="14" font-weight="700" fill="#1C1917">Table 14</text>
+                    </g>
+
+                    <!-- BOTTOM SECTION VENUE FEATURES -->
+                    <!-- BAR -->
+                    <g transform="translate(65, 410)">
+                        <rect width="65" height="145" fill="#475569" stroke="#334155" stroke-width="2" rx="4" />
+                        <text x="32.5" y="77" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF" letter-spacing="2">BAR</text>
+                    </g>
+
+                    <!-- REGISTRATION -->
+                    <g transform="translate(260, 500)">
+                        <rect width="90" height="40" fill="#F1F5F9" stroke="#94A3B8" stroke-width="1.5" rx="4" />
+                        <text x="45" y="24" text-anchor="middle" font-size="11" font-weight="600" fill="#334155">Registration</text>
+                    </g>
+
+                    <!-- Table 17 -->
+                    <g class="map-table" data-map-table="17" onclick="scrollToTable(17)" transform="translate(395, 420)">
+                        <rect width="70" height="95" fill="#FFFFFF" stroke="#78716C" stroke-width="1.5" rx="6" />
+                        <text x="35" y="52" text-anchor="middle" font-size="13" font-weight="700" fill="#1C1917">Table 17</text>
+                    </g>
+                    <!-- Table 16 -->
+                    <g class="map-table" data-map-table="16" onclick="scrollToTable(16)" transform="translate(480, 420)">
+                        <rect width="70" height="95" fill="#FFFFFF" stroke="#78716C" stroke-width="1.5" rx="6" />
+                        <text x="35" y="52" text-anchor="middle" font-size="13" font-weight="700" fill="#1C1917">Table 16</text>
+                    </g>
+                    <!-- Table 15 -->
+                    <g class="map-table" data-map-table="15" onclick="scrollToTable(15)" transform="translate(565, 420)">
+                        <rect width="70" height="95" fill="#FFFFFF" stroke="#78716C" stroke-width="1.5" rx="6" />
+                        <text x="35" y="52" text-anchor="middle" font-size="13" font-weight="700" fill="#1C1917">Table 15</text>
+                    </g>
+
+                    <!-- POND -->
+                    <g transform="translate(735, 380)">
+                        <rect width="80" height="100" fill="#BAE6FD" stroke="#0284C7" stroke-width="1.5" rx="4" />
+                        <text x="40" y="55" text-anchor="middle" font-size="14" font-weight="700" fill="#0369A1" letter-spacing="1.5">POND</text>
+                    </g>
+
+                    <!-- RESTROOMS -->
+                    <g transform="translate(735, 495)">
+                        <rect width="80" height="55" fill="#E2E8F0" stroke="#64748B" stroke-width="1" rx="4" />
+                        <text x="40" y="25" text-anchor="middle" font-size="10" font-weight="700" fill="#334155"><tspan font-weight="bold">🚻</tspan> RESTROOMS</text>
+                        <text x="40" y="40" text-anchor="middle" font-size="9" fill="#475569">GENTS / LADIES</text>
+                    </g>
+
+                    <!-- KITCHEN -->
+                    <g transform="translate(825, 270)">
+                        <rect width="75" height="280" fill="#D1D5DB" stroke="#6B7280" stroke-width="1.5" rx="4" />
+                        <text x="37.5" y="140" text-anchor="middle" font-size="12" font-weight="700" fill="#374151" letter-spacing="2" transform="rotate(-90 37.5 140)">KITCHEN AREA</text>
+                    </g>
+
+                </svg>
+            </div>
+            <p class="text-center text-xs text-stone-500 italic mt-2">💡 Tip: Click any table on the map above to view guest assignments on Page 1.</p>
+        </div>
+    </main>
+
+    <script>
+        // Guest list raw data structured by Table Number
+        const seatingData = [
+            {
+                table: 1,
+                guests: ["Mimo", "Javen", "Judy", "Holiday", "CK", "Janson", "Thea", "Hoi Tong", "Moon", "Brian Cheong"]
+            },
+            {
+                table: 2,
+                guests: ["Wei Thng's", "Bryan", "Elaine", "Zhi Yu's", "Benny", "Fae's", "Wen Yun"]
+            },
+            {
+                table: 3,
+                guests: ["Lee Yi", "Zhong Qi's", "Seowsze", "Jia Aun", "Kally's", "Ally", "Kelvin Choi", "Vivian"]
+            },
+            {
+                table: 5,
+                guests: ["TJ", "Patrick", "Harvinder", "Nori's", "Farisya's", "Low's"]
+            },
+            {
+                table: 6,
+                guests: ["Iznie's", "Sien Peng's", "Ju Keat", "Kia Ching", "Carrie", "Violet", "Chee Hong"]
+            },
+            {
+                table: 7,
+                guests: ["Loh", "Bou", "Si Ling", "Eman", "Jason", "Deep Ng", "Xin Wei", "Xiao Yin", "Jex"]
+            },
+            {
+                table: 8,
+                guests: ["Ney", "Samantha", "Stephanie", "Cho Jun Yuan", "Alex", "OCB's", "Zhin Yin", "Yung Kang", "Min Cheng"]
+            },
+            {
+                table: 9,
+                guests: ["Li Bing Yao", "Wang Feng", "Yeow", "Jyh yian", "Teh's", "Tay Jia Yi", "Xyndi", "Chew", "Qiao Wen", "Chua"]
+            },
+            {
+                table: 10,
+                guests: ["大舅舅's (女)", "四舅舅's (女)", "小姨's (女)"]
+            },
+            {
+                table: 11,
+                guests: ["大伯's (男）", "二伯's (男）", "文欣's", "祚礼's"]
+            },
+            {
+                table: 12,
+                guests: ["三姑's (女）"]
+            },
+            {
+                table: 13,
+                guests: ["Boon Ming's", "四姑's (女)", "小姑's (女)"]
+            },
+            {
+                table: 14,
+                guests: ["Christine", "Hina", "Leanne", "Shin Wei", "Zi Liang", "Jie Fong", "Xun Wei", "Chi Jun", "Yun Yi", "Yue Song"]
+            },
+            {
+                table: 15,
+                guests: ["QingRui", "Chia Yee", "Yong Shien", "Wei Chee", "Shang Ren V", "Zshi Ling V", "Li Han", "Voon Shun Jie V", "小舅's (女) V"]
+            },
+            {
+                table: 16,
+                guests: ["Kit Yin", "Kylie", "Joyce", "Phoon Kah Kei", "Phoon Kah Kei", "三姑's (女）", "大姑's (女）", "二姑's (女）V"]
+            },
+            {
+                table: 17,
+                guests: ["二姑's", "五姑's"]
+            }
+        ];
+
+        let currentScale = 1.0;
+        let activeCols = 4;
+        let currentView = 'table';
+
+        // Render all tables
+        function renderSeatingPlan() {
+            const gridContainer = document.getElementById('tablesGrid');
+            gridContainer.innerHTML = '';
+
+            seatingData.forEach(tableData => {
+                const tableCard = document.createElement('div');
+                tableCard.className = `table-card text-center p-3 sm:p-4 rounded-xl transition-all duration-200 border border-stone-200/60 hover:border-stone-400 bg-white/40 cursor-pointer`;
+                tableCard.setAttribute('data-table-num', tableData.table);
+                tableCard.onclick = (e) => {
+                    if (!e.target.closest('.guest-name')) {
+                        highlightMapTableOnly(tableData.table);
+                    }
+                };
+
+                const guestItemsHTML = tableData.guests.map(guest => {
+                    const hasChinese = /[\u4e00-\u9fa5]/.test(guest);
+                    const fontClass = hasChinese ? 'font-chinese font-semibold' : 'font-body font-medium uppercase tracking-wider';
+                    
+                    return `<li class="guest-name ${fontClass} text-xs sm:text-sm md:text-sm leading-snug text-stone-900 py-1 px-1.5 rounded hover:bg-amber-100 hover:text-amber-900 transition-all cursor-pointer flex items-center justify-center gap-1 group" 
+                                data-name="${guest.toLowerCase()}" 
+                                onclick="locateGuest('${guest.replace(/'/g, "\\'")}', ${tableData.table}, event)"
+                                title="Click to view ${escapeHtml(guest)}'s table location on the map">
+                        <span>${escapeHtml(guest)}</span>
+                        <i class="fa-solid fa-location-dot text-[10px] text-amber-600 opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true"></i>
+                    </li>`;
+                }).join('');
+
+                tableCard.innerHTML = `
+                    <div class="mb-2">
+                        <span class="table-number text-4xl sm:text-5xl md:text-6xl text-stone-900 font-normal leading-none inline-block">
+                            ${tableData.table}
+                        </span>
+                    </div>
+                    <ul class="space-y-0.5 max-w-[220px] mx-auto">
+                        ${guestItemsHTML}
+                    </ul>
+                `;
+
+                gridContainer.appendChild(tableCard);
+            });
+
+            renderAlphaPlan();
+        }
+
+        function renderAlphaPlan() {
+            const alphaGrid = document.getElementById('alphaGrid');
+            alphaGrid.innerHTML = '';
+
+            // Flatten guests with table info
+            let allGuests = [];
+            seatingData.forEach(t => {
+                t.guests.forEach(g => {
+                    allGuests.push({ name: g, table: t.table });
+                });
+            });
+
+            // Sort alphabetically
+            allGuests.sort((a, b) => a.name.localeCompare(b.name, 'zh-Hans-CN', { sensitivity: 'base' }));
+
+            // Group by first character category
+            let groups = {};
+            allGuests.forEach(g => {
+                let firstChar = g.name.charAt(0).toUpperCase();
+                if (/[\u4e00-\u9fa5]/.test(firstChar)) {
+                    firstChar = '中文 (Chinese)';
+                } else if (!/[A-Z]/.test(firstChar)) {
+                    firstChar = '#';
+                }
+                if (!groups[firstChar]) groups[firstChar] = [];
+                groups[firstChar].push(g);
+            });
+
+            Object.keys(groups).forEach(groupKey => {
+                const groupCard = document.createElement('div');
+                groupCard.className = 'bg-white/60 p-4 rounded-xl border border-stone-200/80 shadow-sm';
+
+                const guestListHTML = groups[groupKey].map(item => {
+                    const hasChinese = /[\u4e00-\u9fa5]/.test(item.name);
+                    const fontClass = hasChinese ? 'font-chinese' : 'font-body font-medium uppercase';
+
+                    return `<li class="flex items-center justify-between py-1.5 px-2 rounded hover:bg-amber-100/80 transition-all cursor-pointer group border-b border-stone-100 last:border-none"
+                                onclick="locateGuest('${item.name.replace(/'/g, "\\'")}', ${item.table}, event)">
+                        <span class="${fontClass} text-xs sm:text-sm text-stone-900 group-hover:text-amber-900 group-hover:font-bold">
+                            ${escapeHtml(item.name)}
+                        </span>
+                        <span class="text-xs px-2 py-0.5 bg-stone-100 text-stone-800 rounded-md font-serifHeader font-bold border border-stone-200 group-hover:bg-amber-600 group-hover:text-white transition-colors">
+                            Table ${item.table}
+                        </span>
+                    </li>`;
+                }).join('');
+
+                groupCard.innerHTML = `
+                    <h3 class="font-serifHeader text-lg font-bold text-stone-900 border-b-2 border-stone-800 pb-1 mb-3">
+                        ${groupKey}
+                    </h3>
+                    <ul class="space-y-0.5">
+                        ${guestListHTML}
+                    </ul>
+                `;
+
+                alphaGrid.appendChild(groupCard);
+            });
+        }
+
+        // Locate guest and focus map
+        function locateGuest(guestName, tableNum, event) {
+            if (event) event.stopPropagation();
+
+            // Highlight table on map
+            highlightMapTableOnly(tableNum);
+
+            // Display floating location banner
+            const banner = document.getElementById('guestLocationBanner');
+            const bannerText = document.getElementById('guestLocationText');
+            if (banner && bannerText) {
+                bannerText.innerHTML = `<span><strong>${escapeHtml(guestName)}</strong> is seated at <strong class="text-amber-700 underline text-base sm:text-lg">Table ${tableNum}</strong></span>`;
+                banner.classList.remove('hidden');
+            }
+
+            // Scroll smoothly to floor map
+            const mapSection = document.getElementById('mapSection');
+            if (mapSection) {
+                mapSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        function dismissGuestLocation() {
+            const banner = document.getElementById('guestLocationBanner');
+            if (banner) banner.classList.add('hidden');
+        }
+
+        function switchView(mode) {
+            currentView = mode;
+            const btnTable = document.getElementById('btnViewTable');
+            const btnAlpha = document.getElementById('btnViewAlpha');
+            const gridTable = document.getElementById('tablesGrid');
+            const gridAlpha = document.getElementById('alphaGrid');
+
+            if (mode === 'table') {
+                btnTable.className = 'px-4 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all bg-stone-900 text-white shadow-sm';
+                btnAlpha.className = 'px-4 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all bg-stone-200 text-stone-800 hover:bg-stone-300';
+                gridTable.classList.remove('hidden');
+                gridAlpha.classList.add('hidden');
+            } else {
+                btnAlpha.className = 'px-4 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all bg-stone-900 text-white shadow-sm';
+                btnTable.className = 'px-4 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all bg-stone-200 text-stone-800 hover:bg-stone-300';
+                gridAlpha.classList.remove('hidden');
+                gridTable.classList.add('hidden');
+            }
+        }
+
+        // Scroll to specific table from map click
+        function scrollToTable(tableNum) {
+            highlightMapTableOnly(tableNum);
+            
+            if (currentView !== 'table') {
+                switchView('table');
+            }
+
+            const card = document.querySelector(`.table-card[data-table-num="${tableNum}"]`);
+            if (card) {
+                card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                card.classList.add('highlight-table');
+                setTimeout(() => {
+                    card.classList.remove('highlight-table');
+                }, 3000);
+            }
+        }
+
+        function highlightMapTableOnly(tableNum) {
+            document.querySelectorAll('.map-table').forEach(m => m.classList.remove('highlight-map-table'));
+            const mapEl = document.querySelector(`.map-table[data-map-table="${tableNum}"]`);
+            if (mapEl) mapEl.classList.add('highlight-map-table');
+        }
+
+        // Helper to escape HTML characters
+        function escapeHtml(text) {
+            return text
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        // Search Guest functionality
+        function searchGuest() {
+            const query = document.getElementById('guestSearch').value.trim().toLowerCase();
+            const clearBtn = document.getElementById('clearSearch');
+            const statusDiv = document.getElementById('searchStatus');
+
+            clearBtn.classList.toggle('hidden', query === '');
+
+            let matchCount = 0;
+            let matchedTables = new Set();
+
+            // Reset highlights
+            document.querySelectorAll('.highlight-guest').forEach(el => el.classList.remove('highlight-guest'));
+            document.querySelectorAll('.highlight-table').forEach(el => el.classList.remove('highlight-table'));
+            document.querySelectorAll('.map-table').forEach(el => el.classList.remove('highlight-map-table'));
+
+            if (query === '') {
+                statusDiv.classList.add('hidden');
+                return;
+            }
+
+            // Search names in table view
+            document.querySelectorAll('.guest-name').forEach(el => {
+                const name = el.getAttribute('data-name');
+                if (name && name.includes(query)) {
+                    el.classList.add('highlight-guest');
+                    matchCount++;
+
+                    const parentTable = el.closest('.table-card');
+                    if (parentTable) {
+                        const tableNum = parentTable.getAttribute('data-table-num');
+                        parentTable.classList.add('highlight-table');
+                        matchedTables.add(tableNum);
+
+                        // Also highlight map SVG
+                        const mapEl = document.querySelector(`.map-table[data-map-table="${tableNum}"]`);
+                        if (mapEl) mapEl.classList.add('highlight-map-table');
+                    }
+                }
+            });
+
+            statusDiv.classList.remove('hidden');
+            if (matchCount > 0) {
+                const tablesList = Array.from(matchedTables).sort((a,b) => a-b).map(t => 'Table ' + t).join(', ');
+                statusDiv.innerHTML = `<span class="text-amber-700 font-semibold"><i class="fa-solid fa-check-circle mr-1"></i> Found ${matchCount} match(es) in ${tablesList}</span>`;
+            } else {
+                statusDiv.innerHTML = `<span class="text-rose-600"><i class="fa-solid fa-circle-exclamation mr-1"></i> No guests found matching "${escapeHtml(query)}"</span>`;
+            }
+        }
+
+        function clearSearch() {
+            document.getElementById('guestSearch').value = '';
+            searchGuest();
+            document.getElementById('guestSearch').focus();
+        }
+
+        function adjustScale(delta) {
+            currentScale = Math.min(Math.max(0.7, currentScale + delta), 1.3);
+            const wrapper = document.getElementById('scalableWrapper');
+            wrapper.style.fontSize = `${currentScale}rem`;
+            document.getElementById('scaleDisplay').innerText = `${Math.round(currentScale * 100)}%`;
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            renderSeatingPlan();
+        });
+    </script>
+</body>
+</html>
