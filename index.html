@@ -234,7 +234,7 @@
             </div>
         </div>
 
-        <!-- PAGE 2: VENUE FLOOR PLAN MAP (FULL SCREEN RESPONSIVE WITHOUT HORIZONTAL SCROLL) -->
+        <!-- PAGE 2: VENUE FLOOR PLAN MAP -->
         <div id="seatingCardMap" class="paper-card page-break relative overflow-hidden rounded-xl sm:rounded-2xl p-2 sm:p-10 border border-stone-300">
             <header class="text-center mb-2 sm:mb-6" id="mapSection">
                 <h1 class="title-names text-4xl sm:text-6xl text-stone-900 font-normal">Zuo An & Mei Khei</h1>
@@ -253,7 +253,7 @@
                 </button>
             </div>
 
-            <!-- Auto-Scaling Responsive SVG Frame (Zero Horizontal Scroll) -->
+            <!-- Auto-Scaling Responsive SVG Frame -->
             <div class="w-full my-2 border border-stone-300 rounded-lg bg-amber-50/20 p-1 sm:p-4 shadow-inner">
                 <svg viewBox="0 0 920 580" class="w-full h-auto block font-sans" preserveAspectRatio="xMidYMid meet">
                     <rect x="5" y="5" width="910" height="570" fill="#FAF8F5" stroke="#78716C" stroke-width="2" rx="8" />
@@ -284,10 +284,14 @@
                         <rect width="75" height="110" fill="#FFFFFF" stroke="#78716C" stroke-width="1.5" rx="6" />
                         <text x="37.5" y="60" text-anchor="middle" font-size="14" font-weight="700" fill="#1C1917">Table 5</text>
                     </g>
-                    <g transform="translate(345, 60)" opacity="0.6">
-                        <rect width="75" height="70" fill="#E7E5E4" stroke="#A8A29E" stroke-width="1" stroke-dasharray="3,3" rx="4" />
-                        <text x="37.5" y="40" text-anchor="middle" font-size="12" fill="#78716C">Table 4</text>
+                    
+                    <!-- MAIN TABLE (formerly Table 4) with Pink Hue Box -->
+                    <g transform="translate(345, 40)">
+                        <rect width="75" height="110" fill="#FCE7F3" stroke="#EC4899" stroke-width="2" rx="6" />
+                        <text x="37.5" y="52" text-anchor="middle" font-size="13" font-weight="700" fill="#9D174D">Main</text>
+                        <text x="37.5" y="68" text-anchor="middle" font-size="13" font-weight="700" fill="#9D174D">Table</text>
                     </g>
+
                     <g class="map-table" data-map-table="3" onclick="scrollToTable(3)" transform="translate(440, 40)">
                         <rect width="75" height="110" fill="#FFFFFF" stroke="#78716C" stroke-width="1.5" rx="6" />
                         <text x="37.5" y="60" text-anchor="middle" font-size="14" font-weight="700" fill="#1C1917">Table 3</text>
@@ -443,7 +447,7 @@
             {
                 table: 11,
                 guests: [
-                    "Khai Tong's (3)", "Khai Peng's (2)", "Siew Mei (1)", "Wen Xin's (3)", "Zuo Lee's (2)"
+                    "Khai Tong's (2)", "Khai Peng's (2)", "Siew Mei (1)", "Wen Xin's (2)", "Zuo Lee's (2)"
                 ]
             },
             {
@@ -470,7 +474,7 @@
             {
                 table: 15,
                 guests: [
-                    "QingRui （1）", "Chia Yee （1）", "Yong Shien （1）", "Wei Chee （1）", 
+                    "Qing Rui （1）", "Chia Yee （1）", "Yong Shien（1）", "Wei Chee（1）", 
                     "Shang Ren （1V）", "Zshi Ling V （1V）", "Li Han （1）", "Voon Shun Jie V （1V）", 
                     "女方小舅 （2V）"
                 ]
@@ -485,7 +489,7 @@
             {
                 table: 17,
                 guests: [
-                    "女方二姑 Family (11)", "Chloe, Vince, Stella", "女方五姑 Family (2)"
+                    "女方二姑 Family (11)", "Chloe, Vince, Stella (3)", "女方五姑 Family (2)"
                 ]
             }
         ];
