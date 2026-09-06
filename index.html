@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Wedding Seating Chart - Zuo An & Mei Khei</title>
 
     <!-- Tailwind CSS CDN -->
@@ -45,13 +45,14 @@
             color: #1a1a1a;
             font-family: 'Montserrat', 'Noto Serif SC', sans-serif;
             -webkit-font-smoothing: antialiased;
+            touch-action: manipulation;
         }
 
         .paper-card {
             background-color: #FAF8F5;
-            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.03);
+            box-shadow: 0 4px 15px -3px rgba(0, 0, 0, 0.08);
             background-image: radial-gradient(#dcd2c7 0.5px, transparent 0.5px);
-            background-size: 24px 24px;
+            background-size: 20px 20px;
         }
 
         .tulip-art {
@@ -88,7 +89,7 @@
             font-weight: 800 !important;
             padding: 2px 6px;
             border-radius: 4px;
-            transform: scale(1.08);
+            transform: scale(1.05);
             display: inline-block;
             transition: all 0.2s ease;
             box-shadow: 0 0 0 2px #D97706;
@@ -96,7 +97,7 @@
 
         .highlight-table {
             border-color: #D4AF37 !important;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4) !important;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4) !important;
             background-color: #FFFFFF !important;
         }
 
@@ -114,6 +115,14 @@
             stroke: #D97706 !important;
             stroke-width: 3px !important;
             filter: drop-shadow(0px 0px 6px rgba(217, 119, 6, 0.6));
+        }
+
+        .sticky-mobile-header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(8px);
+            background-color: rgba(250, 248, 245, 0.92);
         }
 
         @media print {
@@ -148,114 +157,105 @@
         }
     </style>
 </head>
-<body class="min-h-screen py-6 px-3 sm:px-6 md:px-8">
+<body class="min-h-screen py-2 px-2 sm:py-6 sm:px-6 md:px-8">
 
-    <main class="max-w-5xl mx-auto space-y-8">
+    <main class="max-w-md mx-auto sm:max-w-5xl space-y-4 sm:space-y-8">
         
         <!-- PAGE 1: SEATING CHART GUEST LIST -->
-        <div id="seatingCard" class="paper-card relative overflow-hidden rounded-2xl p-6 sm:p-10 md:p-12 border border-stone-300">
+        <div id="seatingCard" class="paper-card relative overflow-hidden rounded-xl sm:rounded-2xl p-3 sm:p-10 md:p-12 border border-stone-300">
             
             <!-- Botanical Tulip Decor Background -->
             <div class="absolute inset-0 pointer-events-none select-none overflow-hidden z-0" aria-hidden="true">
-                <svg class="absolute -top-4 -left-4 w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 transform -rotate-12" viewBox="0 0 200 200">
+                <svg class="absolute -top-4 -left-4 w-32 h-32 sm:w-64 sm:h-64 transform -rotate-12" viewBox="0 0 200 200">
                     <path class="tulip-art-soft" d="M10 160 C 20 100, 70 70, 110 50 C 80 80, 50 120, 10 160 Z" />
                     <path class="tulip-art" d="M30 180 C 60 130, 100 110, 140 90 C 100 120, 70 150, 30 180 Z" />
                     <path class="tulip-art" d="M20 190 Q 70 120 120 45" />
-                    <g transform="translate(120,45) rotate(25)">
-                        <path class="tulip-art" d="M 0 0 C -15 -20, -18 -45, 0 -60 C 18 -45, 15 -20, 0 0 Z" />
-                        <path class="tulip-art" d="M -10 -20 C -25 -35, -15 -55, 0 -60 C -8 -45, -5 -30, -10 -20 Z" />
-                        <path class="tulip-art" d="M 10 -20 C 25 -35, 15 -55, 0 -60 C 8 -45, 5 -30, 10 -20 Z" />
-                    </g>
                 </svg>
 
-                <svg class="absolute -top-4 -right-4 w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 transform scale-x-[-1] -rotate-12" viewBox="0 0 200 200">
+                <svg class="absolute -top-4 -right-4 w-32 h-32 sm:w-64 sm:h-64 transform scale-x-[-1] -rotate-12" viewBox="0 0 200 200">
                     <path class="tulip-art-soft" d="M10 160 C 20 100, 70 70, 110 50 C 80 80, 50 120, 10 160 Z" />
                     <path class="tulip-art" d="M30 180 C 60 130, 100 110, 140 90 C 100 120, 70 150, 30 180 Z" />
-                    <path class="tulip-art" d="M20 190 Q 70 120 120 45" />
-                    <g transform="translate(120,45) rotate(25)">
-                        <path class="tulip-art" d="M 0 0 C -15 -20, -18 -45, 0 -60 C 18 -45, 15 -20, 0 0 Z" />
-                    </g>
                 </svg>
             </div>
 
             <div id="scalableWrapper" class="printable-content relative z-10 origin-top transition-all duration-200">
                 
-                <header class="text-center mb-8 sm:mb-10" id="seatingSection">
-                    <h1 class="title-names text-6xl sm:text-7xl md:text-8xl text-stone-900 font-normal tracking-wide leading-none">
+                <header class="text-center mb-4 sm:mb-10" id="seatingSection">
+                    <h1 class="title-names text-5xl sm:text-7xl md:text-8xl text-stone-900 font-normal tracking-wide leading-none">
                         Zuo An
                     </h1>
                     
-                    <div class="title-names text-3xl sm:text-4xl text-stone-700 font-normal my-0 sm:-my-1 italic">
+                    <div class="title-names text-2xl sm:text-4xl text-stone-700 font-normal my-0 italic">
                         and
                     </div>
                     
-                    <h1 class="title-names text-6xl sm:text-7xl md:text-8xl text-stone-900 font-normal tracking-wide leading-none mb-6">
+                    <h1 class="title-names text-5xl sm:text-7xl md:text-8xl text-stone-900 font-normal tracking-wide leading-none mb-3 sm:mb-6">
                         Mei Khei
                     </h1>
 
-                    <div class="font-serifHeader text-stone-900 text-2xl sm:text-3xl md:text-4xl tracking-[0.25em] sm:tracking-[0.3em] font-semibold border-t-2 border-b-2 border-stone-800 py-2 inline-block px-10 uppercase mb-6">
+                    <div class="font-serifHeader text-stone-900 text-lg sm:text-3xl tracking-[0.2em] sm:tracking-[0.3em] font-semibold border-t-2 border-b-2 border-stone-800 py-1 sm:py-2 inline-block px-6 sm:px-10 uppercase mb-4">
                         Seating Plan
                     </div>
 
-                    <!-- Embedded Search Bar -->
-                    <div class="no-print max-w-md mx-auto mb-6 px-4">
-                        <div class="relative">
-                            <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-stone-400 text-base"></i>
+                    <!-- Sticky Mobile Search Bar -->
+                    <div class="no-print sticky-mobile-header py-2 px-1 mb-3 rounded-xl border border-stone-200/80 shadow-sm">
+                        <div class="relative w-full">
+                            <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-stone-400 text-sm"></i>
                             <input 
                                 type="text" 
                                 id="guestSearch" 
-                                placeholder="Search guest name..." 
-                                class="w-full pl-11 pr-10 py-3 bg-white/90 border-2 border-stone-300 rounded-full text-base text-stone-900 placeholder-stone-400 focus:outline-none focus:border-amber-600 focus:ring-2 focus:ring-amber-600/30 shadow-sm transition-all text-center"
+                                placeholder="Search guest or table..." 
+                                class="w-full pl-9 pr-8 py-2 bg-white border border-stone-300 rounded-full text-sm text-stone-900 placeholder-stone-400 focus:outline-none focus:border-amber-600 focus:ring-2 focus:ring-amber-600/30 shadow-inner text-center"
                                 oninput="searchGuest()"
                             >
-                            <button id="clearSearch" onclick="clearSearch()" aria-label="Clear search" class="hidden absolute right-3.5 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-700 p-1">
-                                <i class="fa-solid fa-circle-xmark text-lg"></i>
+                            <button id="clearSearch" onclick="clearSearch()" aria-label="Clear search" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-700 p-1">
+                                <i class="fa-solid fa-circle-xmark text-sm"></i>
                             </button>
                         </div>
-                        <div id="searchStatus" class="hidden mt-2 text-xs font-semibold text-stone-700 text-center" role="status"></div>
-                    </div>
+                        <div id="searchStatus" class="hidden mt-1.5 text-[11px] font-semibold text-stone-700 text-center" role="status"></div>
 
-                    <div class="no-print mt-4 flex justify-center items-center gap-2">
-                        <span class="text-xs font-semibold text-stone-500 uppercase tracking-wider mr-1">View Mode:</span>
-                        <button id="btnViewTable" onclick="switchView('table')" class="px-4 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all bg-stone-900 text-white shadow-sm">
-                            <i class="fa-solid fa-table-cells mr-1.5"></i> By Table
-                        </button>
-                        <button id="btnViewAlpha" onclick="switchView('alpha')" class="px-4 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all bg-stone-200 text-stone-800 hover:bg-stone-300">
-                            <i class="fa-solid fa-arrow-down-a-z mr-1.5"></i> Alphabetical (A-Z)
-                        </button>
+                        <div class="flex justify-center items-center gap-1.5 mt-2">
+                            <button id="btnViewTable" onclick="switchView('table')" class="flex-1 py-1.5 px-2 rounded-md text-xs font-semibold transition-all bg-stone-900 text-white text-center">
+                                <i class="fa-solid fa-table-cells mr-1"></i> By Table
+                            </button>
+                            <button id="btnViewAlpha" onclick="switchView('alpha')" class="flex-1 py-1.5 px-2 rounded-md text-xs font-semibold transition-all bg-stone-200 text-stone-800 text-center hover:bg-stone-300">
+                                <i class="fa-solid fa-arrow-down-a-z mr-1"></i> A-Z List
+                            </button>
+                        </div>
                     </div>
                 </header>
 
-                <div id="tablesGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-6 gap-y-8 sm:gap-y-10"></div>
-                <div id="alphaGrid" class="hidden grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"></div>
+                <div id="tablesGrid" class="grid grid-cols-1 min-[360px]:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5 sm:gap-6"></div>
+                <div id="alphaGrid" class="hidden grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3"></div>
 
-                <footer class="mt-12 text-center text-stone-600 text-xs sm:text-sm tracking-widest font-serifHeader uppercase border-t border-stone-300 pt-6 font-medium">
+                <footer class="mt-6 sm:mt-12 text-center text-stone-600 text-[10px] sm:text-sm tracking-widest font-serifHeader uppercase border-t border-stone-300 pt-4 font-medium">
                     Thank you for celebrating with us
                 </footer>
             </div>
         </div>
 
-        <!-- PAGE 2: VENUE FLOOR PLAN MAP -->
-        <div id="seatingCardMap" class="paper-card page-break relative overflow-hidden rounded-2xl p-6 sm:p-10 border border-stone-300">
-            <header class="text-center mb-6" id="mapSection">
-                <h1 class="title-names text-5xl sm:text-6xl text-stone-900 font-normal">Zuo An & Mei Khei</h1>
-                <div class="font-serifHeader text-stone-800 text-xl sm:text-2xl tracking-[0.2em] font-semibold border-t-2 border-b-2 border-stone-800 py-1.5 inline-block px-8 uppercase mt-2">
+        <!-- PAGE 2: VENUE FLOOR PLAN MAP (FULL SCREEN RESPONSIVE WITHOUT HORIZONTAL SCROLL) -->
+        <div id="seatingCardMap" class="paper-card page-break relative overflow-hidden rounded-xl sm:rounded-2xl p-2 sm:p-10 border border-stone-300">
+            <header class="text-center mb-2 sm:mb-6" id="mapSection">
+                <h1 class="title-names text-4xl sm:text-6xl text-stone-900 font-normal">Zuo An & Mei Khei</h1>
+                <div class="font-serifHeader text-stone-800 text-sm sm:text-2xl tracking-[0.15em] font-semibold border-t-2 border-b-2 border-stone-800 py-1 inline-block px-4 sm:px-8 uppercase mt-1">
                     Venue Floor Plan
                 </div>
             </header>
 
-            <div id="guestLocationBanner" class="hidden my-3 p-3 sm:p-4 bg-amber-100/90 border border-amber-400 rounded-xl text-center text-amber-950 font-bold shadow-md transition-all flex items-center justify-between px-4 sm:px-6 animate-pulse">
-                <div class="flex items-center space-x-2 text-sm sm:text-base md:text-lg">
-                    <i class="fa-solid fa-location-dot text-amber-600 text-xl animate-bounce" aria-hidden="true"></i>
+            <div id="guestLocationBanner" class="hidden my-2 p-2 sm:p-3 bg-amber-100/90 border border-amber-400 rounded-lg text-center text-amber-950 font-bold shadow-md transition-all flex items-center justify-between px-3">
+                <div class="flex items-center space-x-1.5 text-xs sm:text-base">
+                    <i class="fa-solid fa-location-dot text-amber-600 text-base animate-bounce" aria-hidden="true"></i>
                     <span id="guestLocationText"></span>
                 </div>
-                <button onclick="dismissGuestLocation()" aria-label="Dismiss banner" class="text-amber-800 hover:text-black font-bold text-xl px-2">
+                <button onclick="dismissGuestLocation()" aria-label="Dismiss banner" class="text-amber-800 hover:text-black font-bold text-lg px-1">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
 
-            <div class="w-full overflow-x-auto my-4 border border-stone-300 rounded-xl bg-amber-50/20 p-2 sm:p-4 shadow-inner">
-                <svg viewBox="0 0 920 580" class="w-full h-auto min-w-[700px] font-sans">
+            <!-- Auto-Scaling Responsive SVG Frame (Zero Horizontal Scroll) -->
+            <div class="w-full my-2 border border-stone-300 rounded-lg bg-amber-50/20 p-1 sm:p-4 shadow-inner">
+                <svg viewBox="0 0 920 580" class="w-full h-auto block font-sans" preserveAspectRatio="xMidYMid meet">
                     <rect x="5" y="5" width="910" height="570" fill="#FAF8F5" stroke="#78716C" stroke-width="2" rx="8" />
 
                     <!-- STAGE -->
@@ -372,7 +372,7 @@
                     </g>
                 </svg>
             </div>
-            <p class="text-center text-xs text-stone-500 italic mt-2">💡 Tip: Click any table on the map to jump directly to its guest assignments above.</p>
+            <p class="text-center text-[10px] sm:text-xs text-stone-500 italic mt-1">💡 Tap any table on the map to jump directly to its guest assignments above.</p>
         </div>
     </main>
 
@@ -443,13 +443,13 @@
             {
                 table: 11,
                 guests: [
-                    "Khai Tong's (2)", "Khai Peng's (2)", "Wen Xin's (2)", "Zuo Lee's (2)"
+                    "Khai Tong's (2)", "Khai Peng's (2)", "Siew Mei", "Wen Xin's (2)", "Zuo Lee's (2)"
                 ]
             },
             {
                 table: 12,
                 guests: [
-                    "女方三姑 Family (10)", "丽珊一家 (4)", "丽燕一家 (4)", "丽星 (2)"
+                    "女方三姑 Family (10)", "丽珊一家", "丽燕一家", "丽星"
                 ]
             },
             {
@@ -485,7 +485,7 @@
             {
                 table: 17,
                 guests: [
-                    "女方二姑 Family (11)", "Chloe, Vince, Stella (3)", "女方五姑 Family (2)"
+                    "女方二姑 Family (11)", "Chloe, Vince, Stella", "女方五姑 Family (2)"
                 ]
             }
         ];
@@ -498,7 +498,7 @@
 
             seatingData.forEach(tableData => {
                 const tableCard = document.createElement('div');
-                tableCard.className = `table-card text-center p-3 sm:p-4 rounded-xl transition-all duration-200 border border-stone-200/60 hover:border-stone-400 bg-white/40 cursor-pointer`;
+                tableCard.className = `table-card text-center p-2 sm:p-4 rounded-lg sm:rounded-xl transition-all duration-200 border border-stone-200/80 hover:border-stone-400 bg-white/60 shadow-xs cursor-pointer`;
                 tableCard.setAttribute('data-table-num', tableData.table);
                 tableCard.onclick = (e) => {
                     if (!e.target.closest('.guest-name')) {
@@ -510,18 +510,18 @@
                     const hasChinese = /[\u4e00-\u9fa5]/.test(guest);
                     const fontClass = hasChinese ? 'font-chinese font-semibold' : 'font-body font-medium uppercase tracking-wider';
                     
-                    return `<li class="guest-name ${fontClass} text-xs sm:text-sm md:text-sm leading-snug text-stone-900 py-1 px-1.5 rounded hover:bg-amber-100 hover:text-amber-900 transition-all cursor-pointer flex items-center justify-center gap-1 group" 
+                    return `<li class="guest-name ${fontClass} text-[11px] sm:text-sm leading-tight sm:leading-snug text-stone-900 py-1 px-1 rounded hover:bg-amber-100 hover:text-amber-900 transition-all cursor-pointer flex items-center justify-center gap-1 group" 
                                 data-name="${guest.toLowerCase()}" 
                                 onclick="locateGuest('${guest.replace(/'/g, "\\'")}', ${tableData.table}, event)"
                                 title="Click to view ${escapeHtml(guest)}'s location">
                         <span>${escapeHtml(guest)}</span>
-                        <i class="fa-solid fa-location-dot text-[10px] text-amber-600 opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true"></i>
+                        <i class="fa-solid fa-location-dot text-[9px] text-amber-600 opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true"></i>
                     </li>`;
                 }).join('');
 
                 tableCard.innerHTML = `
-                    <div class="mb-2">
-                        <span class="table-number text-4xl sm:text-5xl md:text-6xl text-stone-900 font-normal leading-none inline-block">
+                    <div class="mb-1 sm:mb-2">
+                        <span class="table-number text-3xl sm:text-5xl md:text-6xl text-stone-900 font-normal leading-none inline-block">
                             ${tableData.table}
                         </span>
                     </div>
@@ -563,25 +563,25 @@
 
             Object.keys(groups).forEach(groupKey => {
                 const groupCard = document.createElement('div');
-                groupCard.className = 'bg-white/60 p-4 rounded-xl border border-stone-200/80 shadow-sm';
+                groupCard.className = 'bg-white/70 p-3 rounded-lg border border-stone-200 shadow-xs';
 
                 const guestListHTML = groups[groupKey].map(item => {
                     const hasChinese = /[\u4e00-\u9fa5]/.test(item.name);
                     const fontClass = hasChinese ? 'font-chinese' : 'font-body font-medium uppercase';
 
-                    return `<li class="flex items-center justify-between py-1.5 px-2 rounded hover:bg-amber-100/80 transition-all cursor-pointer group border-b border-stone-100 last:border-none"
+                    return `<li class="flex items-center justify-between py-1 px-1.5 rounded hover:bg-amber-100/80 transition-all cursor-pointer group border-b border-stone-100 last:border-none"
                                 onclick="locateGuest('${item.name.replace(/'/g, "\\'")}', ${item.table}, event)">
-                        <span class="${fontClass} text-xs sm:text-sm text-stone-900 group-hover:text-amber-900 group-hover:font-bold">
+                        <span class="${fontClass} text-xs text-stone-900 group-hover:text-amber-900 group-hover:font-bold">
                             ${escapeHtml(item.name)}
                         </span>
-                        <span class="text-xs px-2 py-0.5 bg-stone-100 text-stone-800 rounded-md font-serifHeader font-bold border border-stone-200 group-hover:bg-amber-600 group-hover:text-white transition-colors">
-                            Table ${item.table}
+                        <span class="text-[10px] px-1.5 py-0.5 bg-stone-100 text-stone-800 rounded font-serifHeader font-bold border border-stone-200 group-hover:bg-amber-600 group-hover:text-white transition-colors">
+                            T${item.table}
                         </span>
                     </li>`;
                 }).join('');
 
                 groupCard.innerHTML = `
-                    <h3 class="font-serifHeader text-lg font-bold text-stone-900 border-b-2 border-stone-800 pb-1 mb-3">
+                    <h3 class="font-serifHeader text-sm font-bold text-stone-900 border-b border-stone-800 pb-0.5 mb-2">
                         ${groupKey}
                     </h3>
                     <ul class="space-y-0.5">
@@ -601,7 +601,7 @@
             const banner = document.getElementById('guestLocationBanner');
             const bannerText = document.getElementById('guestLocationText');
             if (banner && bannerText) {
-                bannerText.innerHTML = `<span><strong>${escapeHtml(guestName)}</strong> is seated at <strong class="text-amber-700 underline text-base sm:text-lg">Table ${tableNum}</strong></span>`;
+                bannerText.innerHTML = `<span><strong>${escapeHtml(guestName)}</strong> ➔ <strong class="text-amber-700 underline">Table ${tableNum}</strong></span>`;
                 banner.classList.remove('hidden');
             }
 
@@ -624,13 +624,13 @@
             const gridAlpha = document.getElementById('alphaGrid');
 
             if (mode === 'table') {
-                btnTable.className = 'px-4 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all bg-stone-900 text-white shadow-sm';
-                btnAlpha.className = 'px-4 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all bg-stone-200 text-stone-800 hover:bg-stone-300';
+                btnTable.className = 'flex-1 py-1.5 px-2 rounded-md text-xs font-semibold transition-all bg-stone-900 text-white text-center';
+                btnAlpha.className = 'flex-1 py-1.5 px-2 rounded-md text-xs font-semibold transition-all bg-stone-200 text-stone-800 text-center hover:bg-stone-300';
                 gridTable.classList.remove('hidden');
                 gridAlpha.classList.add('hidden');
             } else {
-                btnAlpha.className = 'px-4 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all bg-stone-900 text-white shadow-sm';
-                btnTable.className = 'px-4 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all bg-stone-200 text-stone-800 hover:bg-stone-300';
+                btnAlpha.className = 'flex-1 py-1.5 px-2 rounded-md text-xs font-semibold transition-all bg-stone-900 text-white text-center';
+                btnTable.className = 'flex-1 py-1.5 px-2 rounded-md text-xs font-semibold transition-all bg-stone-200 text-stone-800 text-center hover:bg-stone-300';
                 gridAlpha.classList.remove('hidden');
                 gridTable.classList.add('hidden');
             }
